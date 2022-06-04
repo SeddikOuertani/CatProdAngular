@@ -7,6 +7,7 @@ import { ProduitsListComponent } from 'src/app/components/produits-list/produits
 import { ProduitsDetailsComponent } from 'src/app/components/produits-details/produits-details.component';
 import { ProduitsFormComponent } from 'src/app/components/produits-form/produits-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DisponiblePipe } from 'src/app/pipes/disponible.pipe';
 
 
 
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProduitsLayoutComponent,
     ProduitsListComponent,
     ProduitsDetailsComponent,
-    ProduitsFormComponent
+    ProduitsFormComponent,
+    DisponiblePipe,
   ],
   imports: [
     CommonModule,

@@ -2,21 +2,26 @@
     <h2 class="pt-2">Ajouter Produit</h2>
     <hr>
     <form [formGroup]="produitForm" (submit)="addProduit()">
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="nom">Nom Produit</label>
             <input formControlName="nom" name="nom" id="nom" type="text" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="qt">Quantité Produit</label>
             <input formControlName="qt" name="qt" id="qt" type="text" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="categorie">Catégorie</label>
-            <select formControlName="categorie" name="categorie" class="form-select">
-                <option *ngFor="let cat of catergoriesList | async" [value]="cat" >{{cat.nom | titlecase}}</option>                
+            <select *ngIf="categoriesList | async" formControlName="categorie" name="categorie" class="form-select" (ngModelChange)="updateCategorieSelected($event)">
+                <option [ngValue]="null" selected disabled hidden >Choisir une Catégorie</option>
+                <option  *ngFor="let cat of (categoriesList | async)" [ngValue]="cat">{{cat.nom | titlecase}}</option>                
             </select>
         </div>
-        <div class="form-group">    
+        <div class="form-group my-3">
+            <label for="disponible">Disponibile</label>
+            <input formControlName="disponible" #dispo [value]="dispo.checked? true: false" name="disponible" id="disponible" type="checkbox" class="form-check-input">
+        </div>
+        <div class="form-group my-3">    
             <button class="btn btn-primary" type="submit">Ajouter Produit</button>
         </div>
     </form>
@@ -25,17 +30,24 @@
     <h2 class="pt-2">Modifier Produit</h2>
     <hr>
     <form [formGroup]="produitForm" (submit)="updateProduit(produit? produit.idProduit : null)">
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="nom">Nom Produit</label>
             <input formControlName="nom" name="nom" [value]=" produit? produit.nom: '' " id="nom" type="text" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="qt">Quantité Produit</label>
             <input formControlName="qt" name="qt" [value]=" produit? produit.qt: '' " id="qt" type="text" class="form-control">
         </div>
-        <div class="form-group">
-            <label for="qt">Catégorie</label>
-            <input formControlName="qt" name="qt" [value]=" produit? produit.categorie.nom: '' " id="qt" type="text" class="form-control">
+        <div class="form-group my-3">
+            <label for="categorie">Catégorie</label>
+            <select *ngIf="categoriesList | async" formControlName="categorie" name="categorie" class="form-select" (ngModelChange)="updateCategorieSelected($event)">
+                <option [ngValue]="produit? produit.categorie : null" selected disabled hidden >{{produit? produit.categorie.nom : "Choisir une Catégorie"}}</option>
+                <option  *ngFor="let cat of (categoriesList | async)" [ngValue]="cat">{{cat.nom | titlecase}}</option>                
+            </select>
+        </div>
+        <div class="form-group my-3">
+            <label for="disponible">Disponibile</label>
+            <input formControlName="disponible" [checked]="produit? produit.disponible : false" #dispo [value]="dispo.checked? true: false" name="disponible" id="disponible" type="checkbox" class="form-check-input">
         </div>
         <div class="form-group">    
             <button class="btn btn-primary" type="submit">Mettre à jour</button>

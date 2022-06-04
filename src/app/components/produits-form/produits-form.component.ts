@@ -12,16 +12,17 @@ import { ProduitsService } from 'src/app/services/produits.service';
 })
 export class ProduitsFormComponent implements OnInit {
 
-  catergoriesList !: Observable<any>;  
+  categoriesList !: Observable<any>;  
 
   produitForm = new FormGroup({
-    nom : new FormControl(''),
+    nom : new FormControl(),
     qt : new FormControl(''),
-    categorie : new FormControl('')
+    disponible : new FormControl(),
+    categorie : new FormControl()
   })
 
   formType = "";
-  produit : any = null;
+  produit : any;
   selectedCategorie : any;
 
   constructor(
@@ -42,15 +43,16 @@ export class ProduitsFormComponent implements OnInit {
     this.getCategoriesList();
     this.route.paramMap.subscribe({
       next : (res : any) => {
-        res.get('id')? this.getproduitById(res.get('id')) : null;
+        res.get('id')? this.getProductById(res.get('id')) : null;
       }
     })
     
   }
   
   addProduit(){
-    let produit = this.produitForm.value
-    console.log(produit)
+    let produit = this.produitForm.value;
+    produit.categorie = this.selectedCategorie;
+    console.log(produit);
     this.prodService.addProduit(produit).subscribe({
       next : (res : any) => {
         console.log("produit added successfully");
@@ -70,21 +72,26 @@ export class ProduitsFormComponent implements OnInit {
     }
   }
 
-  getproduitById(id : number){
+  getProductById(id : number){
     this.prodService.getById(id).subscribe({
-      next : (res : any) => {
-        this.produit = res;
-        this.updateCategorieSelected(res.categorie)
-      },
-      error : (err : any) => {
-        console.log(err.error);
+      next :  (res : any) => {
+        this.produit =  res;
+        console.log(res)
+        this.produitForm = new FormGroup({
+          nom : new FormControl(res.nom),
+          qt : new FormControl(res.qt),
+          disponible : new FormControl(res.disponible),
+          categorie : new FormControl(res.categorie)
+        })
+      },error : (err : any) => {
+        console.log(err.error)
       }
     })
   }
 
   updateProduit(id : number){
-    let produit = { ... this.produit};
-    produit = {... produit ,... this.produitForm.value};
+    let produit = {...this.produit}
+    produit = {...produit, ...this.produitForm.value}
     this.prodService.updateProduit(id, produit).subscribe({
       next : (res : any) => {
         console.log("updated Successfully")
@@ -97,11 +104,14 @@ export class ProduitsFormComponent implements OnInit {
   }
 
   getCategoriesList(){
-    this.catergoriesList = this.catService.getAllCategories().pipe(map(categories=>categories));
+    this.categoriesList = this.catService.getAllCategories().pipe(map(categories=> {
+      console.log(categories)
+      return categories
+    }));
   }
 
-  updateCategorieSelected(categorie : any){
-    this.selectedCategorie = categorie
+  updateCategorieSelected(event : any){
+    this.selectedCategorie = event
   }
 
 

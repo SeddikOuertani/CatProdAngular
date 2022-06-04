@@ -30,7 +30,7 @@ export class ProduitsService {
     return this.http.post(`${this.baseUrl}/ajouter`, prod, {headers : this.headers});
   }
   
-  updateProduit(prod : number, id : number){
+  updateProduit(id : number, prod : any){
     return this.http.put(`${this.baseUrl}/modifier/${id}`, prod, {headers : this.headers});
   }
 
