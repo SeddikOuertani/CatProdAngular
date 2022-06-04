@@ -1,0 +1,41 @@
+<div class="container px-3 d-flex flex-column">
+
+    <div class="col h2">Categorie "{{categorie?.nom | titlecase}}" details</div>
+    <hr>
+    <div class="row">
+        <span class="col"><strong>Nom : </strong></span>
+        <span class="col">{{categorie?.nom}}</span>
+    </div>
+    <div class="row">
+        <span class="col"><strong>Quantité : </strong></span>
+        <span class="col">{{categorie?.qt}}</span>
+    </div>
+    <div class="row">
+        <span class="col"><strong>Date de création : </strong></span>
+        <span class="col">{{categorie?.dateCreation}}</span>
+    </div>
+    <div class="row">
+        <span class="col"><strong>Date de modification : </strong></span>
+        <span class="col">{{categorie?.dateModif}}</span>
+    </div>
+
+    <hr>
+    <div class="col h4">Produits dans la catégorie "{{categorie?.nom | titlecase}}"</div>
+    <hr>
+
+    
+    <ul *ngIf="(produitsList$ | async)" class="list-group">
+        <li class="d-flex flex-row justify-content-between border-0">
+            <span class="col">Nom</span>
+            <span class="col">Quantité</span>
+            <span class="col">Disponibilité</span>
+            <span class="col">Date de Création</span>
+        </li>
+        <li *ngFor="let produit of produitsList$ | async" class="list-group-item row">
+            <span class="col">{{produit.nom}}</span>
+            <span class="col">{{produit.qt}}</span>
+            <span class="col">{{produit.disponible}}</span>
+            <span class="col">{{produit.dateCreation}}</span>
+        </li>
+    </ul>
+</div>

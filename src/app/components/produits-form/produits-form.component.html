@@ -1,0 +1,44 @@
+<div *ngIf="formType=='add'">
+    <h2 class="pt-2">Ajouter Produit</h2>
+    <hr>
+    <form [formGroup]="produitForm" (submit)="addProduit()">
+        <div class="form-group">
+            <label for="nom">Nom Produit</label>
+            <input formControlName="nom" name="nom" id="nom" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="qt">Quantité Produit</label>
+            <input formControlName="qt" name="qt" id="qt" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="categorie">Catégorie</label>
+            <select formControlName="categorie" name="categorie" class="form-select">
+                <option *ngFor="let cat of catergoriesList | async" [value]="cat" >{{cat.nom | titlecase}}</option>                
+            </select>
+        </div>
+        <div class="form-group">    
+            <button class="btn btn-primary" type="submit">Ajouter Produit</button>
+        </div>
+    </form>
+</div>
+<div *ngIf="formType=='update'">
+    <h2 class="pt-2">Modifier Produit</h2>
+    <hr>
+    <form [formGroup]="produitForm" (submit)="updateProduit(produit? produit.idProduit : null)">
+        <div class="form-group">
+            <label for="nom">Nom Produit</label>
+            <input formControlName="nom" name="nom" [value]=" produit? produit.nom: '' " id="nom" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="qt">Quantité Produit</label>
+            <input formControlName="qt" name="qt" [value]=" produit? produit.qt: '' " id="qt" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="qt">Catégorie</label>
+            <input formControlName="qt" name="qt" [value]=" produit? produit.categorie.nom: '' " id="qt" type="text" class="form-control">
+        </div>
+        <div class="form-group">    
+            <button class="btn btn-primary" type="submit">Mettre à jour</button>
+        </div>
+    </form>
+</div>

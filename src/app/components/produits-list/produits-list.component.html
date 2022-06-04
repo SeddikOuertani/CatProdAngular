@@ -1,0 +1,41 @@
+
+<div class="row">
+    <h2 class="col">produits</h2>
+    <div class="col">
+        <button routerLink="/produits/add"class="btn btn-success">Ajouter Produit</button>
+    </div>
+</div>
+<hr>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item d-flex flex-row justify-content-around border-0">
+        <p class="font-weight-bold">Nom</p>
+        <p class="font-weight-bold">Quantité</p>
+        <p class="font-weight-bold">Date de Création</p>
+        <p class="font-weight-bold">Disponible</p>
+        <p class="font-weight-bold">Info</p>
+        <p class="font-weight-bold">Modifier</p>
+        <p class="font-weight-bold">Supprimer</p>
+    </li>
+    <li *ngFor="let prod of produitList" class="list-group-item d-flex flex-row justify-content-around">
+        <span class="">{{prod.nom}}</span>
+        <span class="">{{prod.qt}}</span>
+        <span class="">{{prod.dateCreation}}</span>
+        <span class="">{{prod.disponible}}</span>
+        <div class="">
+            <button [routerLink]="prod.idProduit" class="btn btn-warning">
+                <i class="bi bi-info-circle"></i>
+            </button>
+        </div>
+        <div class="">
+            <button [routerLink]="'edit/'+prod.idProduit" class="btn btn-primary">
+                <i class="bi bi-pencil-fill"></i>
+            </button>
+        </div>
+        <div class="">
+            <button (click)="deleteProduit(prod.idProduit)" class="btn btn-danger">
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </div>
+    </li>
+</ul>
