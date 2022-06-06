@@ -6,5 +6,6 @@ export const produitsRouting : Routes = [
     {path : 'add', component : ProduitsFormComponent},
     {path : 'edit/:id', component : ProduitsFormComponent},
     {path : ':id', component : ProduitsDetailsComponent},
+    
 ];
 

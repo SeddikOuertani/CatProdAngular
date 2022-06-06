@@ -10,14 +10,14 @@ export class CategoriesService {
   baseUrl = "http://localhost:8081/api/categories"
   headers = new HttpHeaders()
     .set("Content-Type", "application/json")
-    .set("Access-Control-Allow-Origin","*");
+    .set("Access-Control-Allow-Origin", "*");
   
   constructor(
     private http : HttpClient
   ) { }
 
   getAllCategories(){
-    return this.http.get(this.baseUrl, {headers : this.headers});
+    return this.http.get(this.baseUrl, );
   }
 
   getById(id : number){

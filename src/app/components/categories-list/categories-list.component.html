@@ -8,32 +8,38 @@
 <hr>
 
 <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex flex-row justify-content-around border-0">
+    <li class="list-group-item d-flex flex-row justify-content-between border-0">
         <p class="font-weight-bold">Nom</p>
         <p class="font-weight-bold">Quantité</p>
-        <p class="font-weight-bold">Date de Création</p>
-        <p class="font-weight-bold">Info</p>
-        <p class="font-weight-bold">Modifier</p>
-        <p class="font-weight-bold">Supprimer</p>
-    </li>
-    <li *ngFor="let cat of categoriesList" class="list-group-item d-flex flex-row justify-content-around">
-        <span class="">{{cat.nom}}</span>
-        <span class="">{{cat.qt}}</span>
-        <span class="">{{cat.dateCreation}}</span>
-        <div class="">
-            <button [routerLink]="cat.idCategorie" class="btn btn-warning">
-                <i class="bi bi-info-circle"></i>
-            </button>
+        <div class="d-flex flex-row justify-content-between">
         </div>
-        <div class="">
-            <button [routerLink]="'edit/'+cat.idCategorie" class="btn btn-primary">
-                <i class="bi bi-pencil-fill"></i>
-            </button>
+        </li>
+    <li *ngFor="let cat of categoriesList" class="list-group-item d-flex flex-row justify-content-between">
+       
+        <div class="d-flex flex-fill flex-row justify-content-around">
+            <div class="p-2 flex-fill justify-content-start" >
+                <span class="">{{cat.nom}}</span>
+            </div>
+            <div class="p-2 d-flex flex-fill justify-content-end">
+                <span class="">{{cat.qt}}</span>
+            </div>
         </div>
-        <div class="">
-            <button (click)="deleteCategorie(cat.idCategorie)" class="btn btn-danger">
-                <i class="bi bi-trash-fill"></i>
-            </button>
+        <div class="ms-5 d-flex flex-row justify-content-between">
+            <div class="col-md-1">
+                <button [routerLink]="cat.idCategorie" class="btn btn-warning">
+                    <i class="bi bi-info-circle"></i>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button [routerLink]="'edit/'+cat.idCategorie" class="btn btn-primary">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="deleteCategorie(cat.idCategorie)" class="btn btn-danger">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </div>
         </div>
     </li>
 </ul>

@@ -68,6 +68,10 @@ export class CategoriesFormComponent implements OnInit {
     this.catService.getById(id).subscribe({
       next : (res : any) => {
         this.categorie = res;
+        this.categorieForm = new FormGroup({
+          nom : new FormControl(res.nom),
+          qt : new FormControl(res.qt),
+        })
       },
       error : (err : any) => {
         console.log(err.error);
