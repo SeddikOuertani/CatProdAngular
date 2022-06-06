@@ -1,7 +1,7 @@
 
-<div class="row">
-    <h2 class="col">produits</h2>
-    <div class="col">
+<div class="d-flex flex-row align-items-center justify-content-between">
+    <h2 class="">produits</h2>
+    <div class="">
         <button routerLink="/produits/add"class="btn btn-success">Ajouter Produit</button>
     </div>
 </div>
@@ -13,26 +13,27 @@
         <p class="font-weight-bold">Quantité</p>
         
         <div class="d-flex flex-row justify-content-around">
-            <p class="font-weight-bold">Info</p>
-            <p class="font-weight-bold">Modifier</p>
-            <p class="font-weight-bold">Supprimer</p>
         </div>
     </li>
-    <li *ngFor="let prod of produitList" class="list-group-item d-flex flex-row justify-content-between">
-        <span class="">{{prod.nom}}</span>
-        <span class="">{{prod.qt}}</span>
-        <div class="d-flex flex-row gx-5 justify-content-around">    
+    <li *ngFor="let prod of produitList" class="list-group-item d-flex flex-row justify-content-stretch">
+        <div class="flex-fill"> 
+            <span>{{prod.nom}}</span>
+        </div>  
+        <div class="flex-fill d-flex justify-content-end"> 
+            <span class="">{{prod.qt}}</span>
+        </div>  
+        <div class="flex-fill d-flex flex-row justify-content-end">    
             <div class="">
                 <button [routerLink]="prod.idProduit" class="btn btn-warning">
                     <i class="bi bi-info-circle"></i>
                 </button>
             </div>
-            <div class="">
+            <div class="ms-2">
                 <button [routerLink]="'edit/'+prod.idProduit" class="btn btn-primary">
                     <i class="bi bi-pencil-fill"></i>
                 </button>
             </div>
-            <div class="">
+            <div class="ms-2">
                 <button (click)="deleteProduit(prod.idProduit)" class="btn btn-danger">
                     <i class="bi bi-trash-fill"></i>
                 </button>

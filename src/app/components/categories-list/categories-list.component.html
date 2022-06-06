@@ -1,7 +1,7 @@
 
-<div class="row">
-    <h2 class="col">categories</h2>
-    <div class="col">
+<div class="d-flex flex-row align-items-center justify-content-between">
+    <h2 class="">categories</h2>
+    <div class="">
         <button routerLink="/categories/add"class="btn btn-success">Ajouter Catégorie</button>
     </div>
 </div>
@@ -14,28 +14,25 @@
         <div class="d-flex flex-row justify-content-between">
         </div>
         </li>
-    <li *ngFor="let cat of categoriesList" class="list-group-item d-flex flex-row justify-content-between">
-       
-        <div class="d-flex flex-fill flex-row justify-content-around">
-            <div class="p-2 flex-fill justify-content-start" >
-                <span class="">{{cat.nom}}</span>
-            </div>
-            <div class="p-2 d-flex flex-fill justify-content-end">
-                <span class="">{{cat.qt}}</span>
-            </div>
+    <li *ngFor="let cat of categoriesList" class="list-group-item d-flex flex-row justify-content-stretch">
+        <div class="flex-fill" >
+            <span class="">{{cat.nom}}</span>
         </div>
-        <div class="ms-5 d-flex flex-row justify-content-between">
-            <div class="col-md-1">
+        <div class="d-flex flex-fill justify-content-end">
+            <span class="d-flex justify-content-end">{{cat.qt}}</span>
+        </div>
+        <div class="flex-fill d-flex flex-row justify-content-end">
+            <div class="">
                 <button [routerLink]="cat.idCategorie" class="btn btn-warning">
                     <i class="bi bi-info-circle"></i>
                 </button>
             </div>
-            <div class="col-md-1">
+            <div class="ms-2">
                 <button [routerLink]="'edit/'+cat.idCategorie" class="btn btn-primary">
                     <i class="bi bi-pencil-fill"></i>
                 </button>
             </div>
-            <div class="col-md-1">
+            <div class="ms-2">
                 <button (click)="deleteCategorie(cat.idCategorie)" class="btn btn-danger">
                     <i class="bi bi-trash-fill"></i>
                 </button>
