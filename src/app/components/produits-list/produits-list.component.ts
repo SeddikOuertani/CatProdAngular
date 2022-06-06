@@ -43,4 +43,21 @@ export class ProduitsListComponent implements OnInit {
     })
   }
 
+  getExcel(){
+    this.prodService.getExcel().subscribe((res : any) => {
+      const blob = new Blob([res], { type: 'application/vnd.ms-excel' });
+      const url= window.URL.createObjectURL(blob);
+      window.open(url);
+    })
+  }
+
+  getPDF(){
+    this.prodService.getPDF().subscribe((res : any) => {
+      const blob = new Blob([res], { type: 'application/pdf' });
+      const url= window.URL.createObjectURL(blob);
+      window.open(url);
+    })
+  }
+
+
 }

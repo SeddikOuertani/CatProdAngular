@@ -40,5 +40,20 @@ export class CategoriesListComponent implements OnInit {
       }
     })
   }
+  
+  getExcel(){
+    this.catService.getExcel().subscribe((res : any) => {
+      const blob = new Blob([res], { type: 'application/vnd.ms-excel' });
+      const url= window.URL.createObjectURL(blob);
+      window.open(url);
+    })
+  }
 
+  getPDF(){
+    this.catService.getPDF().subscribe((res : any) => {
+      const blob = new Blob([res], { type: 'application/pdf' });
+      const url= window.URL.createObjectURL(blob);
+      window.open(url);
+    })
+  }
 }

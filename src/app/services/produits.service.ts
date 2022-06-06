@@ -38,5 +38,11 @@ export class ProduitsService {
     return this.http.delete(`${this.baseUrl}/supprimer/${id}`, {headers : this.headers});
   }
 
+  getExcel( ){
+    return this.http.get<any>(`${this.baseUrl}/export/excel`, {responseType : 'arraybuffer' as 'json'})
+  }
 
+  getPDF( ){
+    return this.http.get<any>(`${this.baseUrl}/export/pdf`, {responseType : 'arraybuffer' as 'json'})
+  }
 }

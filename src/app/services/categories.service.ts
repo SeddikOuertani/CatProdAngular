@@ -17,7 +17,7 @@ export class CategoriesService {
   ) { }
 
   getAllCategories(){
-    return this.http.get(this.baseUrl, );
+    return this.http.get(this.baseUrl, {headers : this.headers} );
   }
 
   getById(id : number){
@@ -34,5 +34,13 @@ export class CategoriesService {
 
   updateById(id : number, category : any){
     return this.http.put(`${this.baseUrl}/modifier/${id}`, category, {headers : this.headers});
+  }
+
+  getExcel( ){
+    return this.http.get<any>(`${this.baseUrl}/export/excel`, {responseType : 'arraybuffer' as 'json'})
+  }
+  
+  getPDF( ){
+    return this.http.get<any>(`${this.baseUrl}/export/pdf`, {responseType : 'arraybuffer' as 'json'})
   }
 }

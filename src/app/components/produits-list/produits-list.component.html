@@ -4,13 +4,19 @@
     <div class="">
         <button routerLink="/produits/add"class="btn btn-success">Ajouter Produit</button>
     </div>
+    <div class="">
+        <button (click)="getExcel()" class="btn btn-outline-success">Excel</button>
+    </div> 
+    <div class="">
+        <button (click)="getPDF()" class="btn btn-outline-danger">PDF</button>
+    </div>
 </div>
 <hr>
 
 <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex flex-row justify-content-between border-0">
-        <p class="font-weight-bold">Nom</p>
-        <p class="font-weight-bold">Quantité</p>
+        <p class="font-weight-bold"><strong>Nom</strong></p>
+        <p class="font-weight-bold"><strong>Quantité</strong></p>
         
         <div class="d-flex flex-row justify-content-around">
         </div>
@@ -21,7 +27,7 @@
         </div>  
         <div class="flex-fill d-flex justify-content-end"> 
             <span class="">{{prod.qt}}</span>
-        </div>  
+        </div> 
         <div class="flex-fill d-flex flex-row justify-content-end">    
             <div class="">
                 <button [routerLink]="prod.idProduit" class="btn btn-warning">

@@ -2,15 +2,15 @@
     <h2 class="pt-2">Ajouter Catégorie</h2>
     <hr>
     <form [formGroup]="categorieForm" (submit)="addCategorie()">
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="nom">Nom catégorie</label>
             <input formControlName="nom" name="nom" id="nom" type="text" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="qt">Quantité catégorie</label>
             <input formControlName="qt" name="qt" id="qt" type="text" class="form-control">
         </div>
-        <div class="form-group">    
+        <div class="form-group my-3">    
             <button class="btn btn-primary" type="submit">Ajouter Catégorie</button>
         </div>
     </form>
@@ -19,15 +19,15 @@
     <h2 class="pt-2">Modifier Catégorie</h2>
     <hr>
     <form [formGroup]="categorieForm" (submit)="updateCategorie(categorie? categorie.idCategorie : null)">
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="nom">Nom catégorie</label>
             <input formControlName="nom" name="nom" [value]=" categorie? categorie.nom: '' " id="nom" type="text" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="qt">Quantité catégorie</label>
             <input formControlName="qt" name="qt" [value]=" categorie? categorie.qt: '' " id="qt" type="text" class="form-control">
         </div>
-        <div class="form-group">    
+        <div class="form-group my-3">    
             <button class="btn btn-primary" type="submit">Mettre à jour</button>
         </div>
     </form>
