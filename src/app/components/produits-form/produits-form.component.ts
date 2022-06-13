@@ -48,21 +48,6 @@ export class ProduitsFormComponent implements OnInit {
     })
     
   }
-  
-  addProduit(){
-    let produit = this.produitForm.value;
-    produit.categorie = this.selectedCategorie;
-    console.log(produit);
-    this.prodService.addProduit(produit).subscribe({
-      next : (res : any) => {
-        console.log("produit added successfully");
-        this.ngZone.run(() => this.router.navigateByUrl('/produits'))
-      },
-      error : (err : any) => {
-        console.log("error adding produit");
-      }
-    })
-  }
 
   selectFormType(){
     if(this.route.snapshot.url[0].path === "add"){
@@ -114,6 +99,20 @@ export class ProduitsFormComponent implements OnInit {
     this.selectedCategorie = event
   }
 
+  addProduit(){
+    let produit = this.produitForm.value;
+    produit.categorie = this.selectedCategorie;
+    console.log(produit);
+    this.prodService.addProduit(produit).subscribe({
+      next : (res : any) => {
+        console.log("produit added successfully");
+        this.ngZone.run(() => this.router.navigateByUrl('/produits'))
+      },
+      error : (err : any) => {
+        console.log("error adding produit");
+      }
+    })
+  }
 
 
 }
